@@ -48,16 +48,80 @@ skillsHeader.forEach((el) => {
 })
 
 /*==================== QUALIFICATION TABS ====================*/
+const tabs = document.querySelectorAll('[data-target]')
+      tabContents = document.querySelectorAll('[data-content]')
 
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = document.querySelector(tab.dataset.target)
+
+        tabContents.forEach(tabContents => {
+            tabContents.classList.remove('qualification__active')
+        })
+        target.classList.add('qualification__active')
+
+        tabs.forEach(tab => {
+            tab.classList.remove('qualification__active')
+        })
+        tab.classList.add('qualification__active')
+    })
+})
 
 /*==================== SERVICES MODAL ====================*/
+const modalWiews = document.querySelectorAll('.services__modal'),
+      modalBtns = document.querySelectorAll('.services__button'),
+      modalCloses = document.querySelectorAll('.services__modal-close');
 
+let modal = function(modalClick) {
+    modalWiews[modalClick].classList.add('active-modal')
+}
+
+modalBtns.forEach((modalBtn, i) => {
+    modalBtn.addEventListener('click', () => {
+        modal(i)
+    })
+})
+
+modalCloses.forEach((modalClose) => {
+    modalClose.addEventListener('click', () => {
+        modalWiews.forEach((modalView) => {
+            modalView.classList.remove('active-modal')
+        })
+    })
+})
 
 /*==================== PORTFOLIO SWIPER  ====================*/
+let swiperPortfolio = new Swiper(".portfolio__container", {
+    cssMode: true,
+    loop: true,
 
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+        clickable: true
+    },
+  });
 
 /*==================== TESTIMONIAL ====================*/
+let swiperTestimonial = new Swiper(".testimonial_container", {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 48,
 
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints: {
+        586: {
+            slidesPreview:2,
+        }
+    }
+  });
 
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 
